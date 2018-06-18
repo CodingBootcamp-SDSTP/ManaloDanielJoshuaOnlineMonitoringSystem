@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<web-app>
+	<display-name>Servlet Sample</display-name>
+	<description>Sample App</description>
+	<servlet>
+		<servlet-name>GetAllEmployees</servlet-name>
+		<servlet-class>AllEmployeesServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetAllEmployees</servlet-name>
+		<url-pattern>/all/employees</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>GetAllGoods</servlet-name>
+		<servlet-class>AllGoodsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetAllGoods</servlet-name>
+		<url-pattern>/all/goods</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>GetAllBranches</servlet-name>
+		<servlet-class>AllBranchesServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetAllBranches</servlet-name>
+		<url-pattern>/all/branches</url-pattern>
+	</servlet-mapping>
+</web-app>
