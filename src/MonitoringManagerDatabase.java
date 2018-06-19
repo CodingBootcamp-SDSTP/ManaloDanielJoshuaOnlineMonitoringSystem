@@ -140,4 +140,172 @@ public class MonitoringManagerDatabase
 		}
 		return("<branches>"+sb.toString()+"</branches>");
 	}
+//ADDING DATA TO ArrayList & DB
+	public boolean addGoods(Goods g) {
+		if(addGoodsToDB(g)) {
+			goods.add(g);
+			return(true);
+		}
+		return(false);
+	}
+
+	public boolean addGoodsToDB(Goods goods) {
+		PreparedStatement stmt = null;
+		try {
+			stmt = conn.prepareStatement("INSERT INTO tbl_goods ( gid, quantity, name, brand, batchcode, unitprice, type, details ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? );");
+			stmt.setInt(1, goods.getGId());
+			stmt.setInt(2, goods.getQuantity());
+			stmt.setString(3, goods.getName());
+			stmt.setString(4, goods.getBrand());
+			stmt.setString(5, goods.getBatchCode());
+			stmt.setBigDecimal(6, goods.getUnitPrice());
+			stmt.setString(7, goods.getType());
+			stmt.setString(8, goods.getDetails());
+			stmt.executeUpdate();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return(false);
+		}
+		finally {
+			try { if(stmt != null) stmt.close(); } catch (Exception e) {};
+		}
+		return(true);
+	}
+
+	public boolean addEmployee(Employee e) {
+		if(addEmployeeToDB(e)) {
+			employees.add(e);
+			return(true);
+		}
+		return(false);
+	}
+
+	public boolean addEmployeeToDB(Employee employee) {
+		PreparedStatement stmt = null;
+		try {
+			stmt = conn.prepareStatement("INSERT INTO tbl_employees ( empid, fname, lname, address, assignedto, sss, philhealth, position, details ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ? );");
+			stmt.setInt(1, employee.getEmpId());
+			stmt.setString(2, employee.getFname());
+			stmt.setString(3, employee.getLname());
+			stmt.setString(4, employee.getAddress());
+			stmt.setInt(5, employee.getAssignedTo());
+			stmt.setInt(6, employee.getSSS());
+			stmt.setInt(7, employee.getPhilHealth());
+			stmt.setString(8, employee.getPosition());
+			stmt.setString(9, employee.getDetails());
+			stmt.executeUpdate();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return(false);
+		}
+		finally {
+			try { if(stmt != null) stmt.close(); } catch (Exception e) {};
+		}
+		return(true);
+	}
+
+	public boolean addBranch(Branch branch) {
+		if(addBranchToDB(branch)) {
+			branches.add(branch);
+			return(true);
+		}
+		return(false);
+	}
+
+	public boolean addBranchToDB(Branch branch) {
+		PreparedStatement stmt = null;
+		try {
+			stmt = conn.prepareStatement("INSERT INTO tbl_branches ( branchid, address, owner, details ) VALUES ( ?, ?, ?, ? );");
+			stmt.setInt(1, branch.getBranchId());
+			stmt.setString(2, branch.getAddress());
+			stmt.setString(3, branch.getOwner());
+			stmt.setString(4, branch.getDetails());
+			stmt.executeUpdate();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return(false);
+		}
+		finally {
+			try { if(stmt != null) stmt.close(); } catch (Exception e) {};
+		}
+		return(true);
+	}
+//DELETING DATA FROM ArrayList & DB
+	public boolean deleteGoods(Goods g) {
+		if(deleteGoodsFromDB(g)) {
+			goods.remove(g);
+			return(true);
+		}
+		return(false);
+	}
+
+	public boolean deleteGoodsFromDB(Goods goods) {
+		PreparedStatement stmt = null;
+		try {
+			stmt = conn.prepareStatement("DELETE * FROM tbl_goods WHERE gid = ?;");
+			stmt.setInt(1, goods.getGId());
+			stmt.executeUpdate();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return(false);
+		}
+		finally {
+			try { if(stmt != null) stmt.close(); } catch (Exception e) {};
+		}
+		return(true);
+	}
+
+	public boolean deleteEmployee(Employee e) {
+		if(deleteEmployeeFromDB(e)) {
+			employees.remove(e);
+			return(true);
+		}
+		return(false);
+	}
+
+	public boolean deleteEmployeeFromDB(Employee employee) {
+		PreparedStatement stmt = null;
+		try {
+			stmt = conn.prepareStatement("DELETE * FROM tbl_employees WHERE empid = ?;");
+			stmt.setInt(1, employee.getEmpId());
+			stmt.executeUpdate();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return(false);
+		}
+		finally {
+			try { if(stmt != null) stmt.close(); } catch (Exception e) {};
+		}
+		return(true);
+	}
+
+	public boolean deleteBranch(Branch branch) {
+		if(deleteBranchFromDB(branch)) {
+			branches.remove(branch);
+			return(true);
+		}
+		return(false);
+	}
+
+	public boolean deleteBranchFromDB(Branch branch) {
+		PreparedStatement stmt = null;
+		try {
+			stmt = conn.prepareStatement("DELETE * tbl_branches WHERE branchid = ?;");
+			stmt.setInt(1, branch.getBranchId());
+			stmt.executeUpdate();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return(false);
+		}
+		finally {
+			try { if(stmt != null) stmt.close(); } catch (Exception e) {};
+		}
+		return(true);
+	}
 }
