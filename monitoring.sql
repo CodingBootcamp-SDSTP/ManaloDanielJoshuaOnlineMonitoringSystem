@@ -1,49 +1,95 @@
-DROP TABLE IF EXISTS tbl_employees;
-CREATE TABLE tbl_employees ( 
-	empid INTEGER PRIMARY KEY,
-	fname VARCHAR(50) NOT NULL,
-	lname VARCHAR(50) NOT NULL,
-	address VARCHAR(255),
-	assignedto INTEGER,
-	sss INTEGER,
-	philhealth INTEGER,
-	position VARCHAR(25) NOT NULL,
-	details VARCHAR(255) );
-
-DROP TABLE IF EXISTS tbl_goods;
-CREATE TABLE tbl_goods (
-	gid INTEGER NOT NULL,
-	quantity INTEGER NOT NULL,
-	name VARCHAR(100) PRIMARY KEY NOT NULL,
-	brand VARCHAR(50),
-	batchcode VARCHAR(20) NOT NULL,
-	unitprice DECIMAL(10,3) NOT NULL,
-	type VARCHAR(50) NOT NULL,
-	details VARCHAR(255) );
-
 DROP TABLE IF EXISTS tbl_sales;
-CREATE TABLE tbl_sales (
-	branchid VARCHAR(255) NOT NULL,
-	dailysales INTEGER PRIMARY KEY,
-	details VARCHAR(255) );
-
+DROP TABLE IF EXISTS tbl_goods;
+DROP TABLE IF EXISTS tbl_employees;
 DROP TABLE IF EXISTS tbl_branches;
-CREATE TABLE tbl_branches (
-	branchid INTEGER PRIMARY KEY,
-	address VARCHAR(100) NOT NULL,
-	owner VARCHAR(100) NOT NULL,
-	details VARCHAR(255) );
+DROP TABLE IF EXISTS tbl_users;
 
-INSERT INTO tbl_employees ( empid, fname, lname, address, assignedto, sss, philhealth, position ) VALUES ( 2018061701, 'Emil', 'Sebastian', 'Santa Rosa, Laguna', 2018001, 00012523457, 05678223, 'Salesman' );
-INSERT INTO tbl_employees ( empid, fname, lname, address, assignedto, sss, philhealth, position ) VALUES ( 2018051001, 'Renan', 'Nuevo', 'Santa Rosa, Laguna', 2018001, 000056238481, 20934762, 'Salesman' );
-INSERT INTO tbl_employees ( empid, fname, lname, address, assignedto, sss, philhealth, position ) VALUES ( 2018040801, 'Ronald', 'Raz', 'Santa Rosa, Laguna', 2018001, 001239587475, 51231239, 'Store Manager' );
-INSERT INTO tbl_employees ( empid, fname, lname, address, assignedto, sss, philhealth, position ) VALUES ( 2018030201, 'Ivan', 'Ivan', 'Santa Rosa, Laguna', 2018001, 00233495792, 49564565, 'Security Guard' );
-INSERT INTO tbl_employees ( empid, fname, lname, address, assignedto, sss, philhealth, position ) VALUES ( 2018040201, 'Nida', 'Nida', 'Santa Rosa, Laguna', 2018001, 00010485717, 40123775, 'Janitress' );
+CREATE TABLE IF NOT EXISTS `tbl_users` (
+	`userid` INTEGER(10) NOT NULL,
+	`username` VARCHAR(50) NOT NULL,
+	`email` VARCHAR(50) DEFAULT NULL,
+	`password` VARCHAR(50) NOT NULL,
+	`firstname` VARCHAR(50) NOT NULL,
+	`lastname` VARCHAR(50) NOT NULL,
+	`extension` VARCHAR(10) DEFAULT '',
+	`dob` DATE NOT NULL,
+	`gender` CHAR(8) DEFAULT '',
+	PRIMARY KEY (`userid`)
+);
 
-INSERT INTO tbl_goods ( gid, quantity, name, brand, batchcode, unitprice, type ) VALUES ( 3210, 500, 'Men shirt', 'Dickies', '2017001', 350.00, 'clothing' );
-INSERT INTO tbl_goods ( gid, quantity, name, brand, batchcode, unitprice, type ) VALUES ( '4510', '450', 'Women shirt', 'Dickies', '2018001', 300.00, 'clothing' );
-INSERT INTO tbl_goods ( gid, quantity, name, brand, batchcode, unitprice, type ) VALUES ( '0990', '250', 'Polo shirt', 'Dickies', '2018011', 450.00, 'clothing' );
-INSERT INTO tbl_goods ( gid, quantity, name, brand, batchcode, unitprice, type ) VALUES ( '1280', '500', 'Men Pants', 'Dickies', '2016012', 750.00, 'clothing' );
-INSERT INTO tbl_goods ( gid, quantity, name, brand, batchcode, unitprice, type ) VALUES ( '0087', '300', 'Women Pants', 'Dickies', '2018070', 700.00, 'clothing' );
+CREATE TABLE IF NOT EXISTS `tbl_branches` (
+	`branchcode` VARCHAR(10) NOT NULL,
+	`city` VARCHAR(20) DEFAULT '',
+	`address` VARCHAR(100) DEFAULT '',
+	`postalcode` VARCHAR(10) NOT NULL,
+	`phonenum` VARCHAR(15) DEFAULT '',
+	`username` VARCHAR(100) NOT NULL,
+	`details` VARCHAR(255) DEFAULT '',
+	PRIMARY KEY (`branchcode`)
+);
 
-INSERT INTO tbl_branches ( branchid, address, owner ) VALUES ( 4019, 'Complex Balibago, Sta. Rosa, Philippines', 'Alfie Osayan' );
+CREATE TABLE IF NOT EXISTS `tbl_employees` ( 
+	`employeeid` BIGINT(12) NOT NULL AUTO_INCREMENT,
+	`firstname` VARCHAR(50) NOT NULL,
+	`lastname` VARCHAR(50) NOT NULL,
+	`branchcode` VARCHAR(10),
+	`address1` VARCHAR(255) DEFAULT '',
+	`address2` VARCHAR(255) DEFAULT '',
+	`gender` VARCHAR(8) DEFAULT '',
+	`sss` VARCHAR(20),
+	`philhealth` VARCHAR(20),
+	`jobtitle` VARCHAR(50) NOT NULL,
+	`details` VARCHAR(255) DEFAULT '',
+	PRIMARY KEY (`employeeid`)
+);
+
+CREATE TABLE IF NOT EXISTS `tbl_goods` (
+	`goodsid` INTEGER(10) NOT NULL,
+	`quantity` SMALLINT(6) NOT NULL,
+	`name` VARCHAR(100) NOT NULL,
+	`codename` VARCHAR(30) DEFAULT '',
+	`branchcode` VARCHAR(10),
+	`brand` VARCHAR(50) DEFAULT '',
+	`batchcode` VARCHAR(20),
+	`unitprice` DECIMAL(10,3) DEFAULT "0.00",
+	`type` VARCHAR(50) DEFAULT '',
+	`details` VARCHAR(255) DEFAULT '',
+	PRIMARY KEY (`goodsid`)
+);
+
+CREATE TABLE IF NOT EXISTS `tbl_sales` (
+	`branchcode` VARCHAR(10),
+	`sales` DECIMAL(10,3) NOT NULL,
+	`date` DATE NOT NULL,
+	`details` VARCHAR(255),
+	PRIMARY KEY (`date`)
+);
+
+INSERT INTO tbl_users ( userid, username, email, password, firstname, lastname, extension, dob, gender) VALUES
+( 1001, 'alpha', 'alpha123@gmail.com', 'beta', 'Daniel', 'Manalo', 'xxx', '2000-02-10', 'male' );
+
+INSERT INTO tbl_branches ( branchcode, city, address, postalcode, phonenum, username ) VALUES
+( '1001', 'Complex Balibago', 'Sta. Rosa, Philippines', 2085, '+123345678', 'alpha' ),
+( '1002', 'San Fernando', 'Pampanga, Philippines', 3502, '+123345678', 'alpha1' ),
+( '1003', 'Cavite City', 'Cavite, Philippines', 1003, '+123345678', 'alpha2' );
+
+INSERT INTO tbl_employees ( employeeid, firstname, lastname, branchcode, address1, address2, gender, sss, philhealth, jobtitle ) VALUES
+( 20170123, 'Emil', 'Sebastian', '1001', 'Santa Rosa, Laguna', '', 'male', '00012523457', '0567456788223', 'Salesman' ),
+( 20108134, 'Renan', 'Nuevo', '1001', 'Santa Rosa, Laguna', '', 'male', '000056238481', '2091234534762', 'Salesman' ),
+( 20080145, 'Ronald', 'Raz', '1001', 'Santa Rosa, Laguna', '', 'male', '001239587475', '5123567891239', 'Store Manager' ),
+( 20022501, 'Ivan', 'Ivan', '1001', 'Santa Rosa, Laguna', '', 'male', '00233495792', '4956434567565', 'Security Guard' ),
+( 20180701, 'Nida', 'Nida', '1001', 'Santa Rosa, Laguna', '', 'female', '00010485717', '4012234123775', 'Janitress' );
+
+INSERT INTO tbl_goods ( goodsid, quantity, name, codename, branchcode, brand, batchcode, unitprice, type ) VALUES
+( 3212640, 500, 'Men shirt', '', '1001', 'Dickies', '2017001-A', 350.00, 'clothing' ),
+( 4526410, 450, 'Women shirt', '', '1001', 'Dickies', '2018001-C', 300.00, 'clothing' ),
+( 0990211, 250, 'Polo shirt', '', '1001', 'Dickies', '2018011-A', 450.00, 'clothing' ),
+( 1226480, 500, 'Men Pants', '', '1001', 'Dickies', '2016012-D', 750.00, 'clothing' ),
+( 0264087, 300, 'Women Pants', '', '1001', 'Dickies', '2018070-A', 700.00, 'clothing' ),
+( 0264027, 300, 'Panyo', 'hndkrchf', '1001', 'Caruso', '2018470-A', 150.00, 'rug' );
+
+INSERT INTO tbl_sales ( branchcode, sales, date ) VALUES
+( '1001', 73209.25, '2018-06-16' ),
+( '1001', 27005.90, '2018-06-18' ),
+( '1001', 48239.50, '2018-06-15' ),
+( '1001', 39550.75, '2018-06-19' );

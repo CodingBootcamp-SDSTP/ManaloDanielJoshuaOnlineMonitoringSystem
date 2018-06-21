@@ -13,7 +13,7 @@ public class AllEmployeesServlet extends HttpServlet
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		PrintWriter out = res.getWriter();
-		employees = mmd.getAllEmployees();
+		employees = mmd.getEmployees();
 		res.setContentType("text/xml");
 		out.println(employees);
 		out.close();

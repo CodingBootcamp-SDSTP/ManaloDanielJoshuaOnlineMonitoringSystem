@@ -2,44 +2,70 @@ import java.math.BigDecimal;
 
 public class Branch
 {
-	private int branchid;
+	private final String BRANCHCODE;
+	private String city;
 	private String address;
-	private String owner;
+	private String postalCode;
+	private String phoneNum;
+	private String username;
 	private String details;
 
-	public Branch(int branchid, String address, String owner, String details) {
-		this.branchid = branchid;
+	public Branch(String branchcode, String city, String address, String postalCode, String phoneNum, String username, String details) {
+		BRANCHCODE = branchcode;
+		this.city = city;
 		this.address = address;
-		this.owner = owner;
+		this.postalCode = postalCode;
+		this.phoneNum = phoneNum;
+		this.username = username;
 		this.details = details;
 	}
 //SETTER
-	public void setBranchId(int bi) {
-		branchid = bi;
+	public void setCity(String c) {
+		city = c;
 	}
 
 	public void setAddress(String a) {
 		address = a;
 	}
 
-	public void setOwner(String o) {
-		owner = o;
+	public void setPostalCode(String pc) {
+		postalCode = pc;
+	}
+
+	public void setPhoneNum(String pn) {
+		phoneNum = pn;
+	}
+
+	public void setUsername(String u) {
+		username = u;
 	}
 
 	public void setDetails(String d) {
 		details = d;
 	}
 //GETTER
-	public int getBranchId() {
-		return(branchid);
+	public String getBranchCode() {
+		return(BRANCHCODE);
+	}
+
+	public String getCity() {
+		return(city);
 	}
 
 	public String getAddress() {
 		return(address);
 	}
 
-	public String getOwner() {
-		return(owner);
+	public String getPostalCode() {
+		return(postalCode);
+	}
+
+	public String getPhoneNum() {
+		return(phoneNum);
+	}
+
+	public String getUsername() {
+		return(username);
 	}
 
 	public String getDetails() {
@@ -47,6 +73,6 @@ public class Branch
 	}
 //METHODS
 	public String toString() {
-		return("<branch><branchid>"+getBranchId()+"</branchid><address>"+getAddress()+"</address><owner>"+getOwner()+"</owner><details>"+getDetails()+"</details></branch>");
+		return("<branch><branchcode>"+getBranchCode()+"</branchcode><city>"+getCity()+"</city><address>"+getAddress()+"</address><postalcode>"+getPostalCode()+"</postalcode><phonenum>"+getPhoneNum()+"</phonenum><username>"+getUsername()+"</username><details>"+getDetails()+"</details></branch>");
 	}
 }

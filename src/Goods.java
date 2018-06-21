@@ -2,19 +2,23 @@ import java.math.BigDecimal;
 
 public class Goods
 {
-	private int gid;
+	private final int GOODSID;
 	private int quantity;
 	private String name;
+	private String codeName;
+	private String branchCode;
 	private String brand;
 	private String batchCode;
 	private BigDecimal unitPrice;
 	private String type;
 	private String details;
 
-	public Goods(int gid, int quantity, String name, String brand, String batchCode, BigDecimal unitPrice, String type, String details) {
-		this.gid = gid;
+	public Goods(int goodsId, int quantity, String name, String codeName, String branchCode, String brand, String batchCode, BigDecimal unitPrice, String type, String details) {
+		GOODSID = goodsId;
 		this.quantity = quantity;
 		this.name = name;
+		this.codeName = codeName;
+		this.branchCode = branchCode;
 		this.brand = brand;
 		this.batchCode = batchCode;
 		this.unitPrice = unitPrice;
@@ -22,16 +26,20 @@ public class Goods
 		this.details = details;
 	}
 //SETTER
-	public void setGId(int id) {
-		gid = id;
-	}
-
 	public void setQuantity(int qty) {
 		quantity = qty;
 	}
 
 	public void setName(String n) {
 		name = n;
+	}
+
+	public void setCodeName(String code) {
+		codeName = code;
+	}
+
+	public void setBranchCode(String bc) {
+		branchCode = bc;
 	}
 
 	public void setBrand(String b) {
@@ -54,8 +62,8 @@ public class Goods
 		details = d;
 	}
 //GETTER
-	public int getGId() {
-		return(gid);
+	public int getGoodsId() {
+		return(GOODSID);
 	}
 
 	public int getQuantity() {
@@ -64,6 +72,14 @@ public class Goods
 
 	public String getName() {
 		return(name);
+	}
+
+	public String getCodeName() {
+		return(codeName);
+	}
+
+	public String getBranchCode() {
+		return(branchCode);
 	}
 
 	public String getBrand() {
@@ -87,6 +103,6 @@ public class Goods
 	}
 //METHODS
 	public String toString() {
-		return("<product><gid>"+getGId()+"</gid><quantity>"+getQuantity()+"</quantity><name>"+getName()+"</name><batchnumber>"+getBatchCode()+"</batchnumber><unitprice>"+getUnitPrice()+"</unitprice><type>"+getType()+"</type><details>"+getDetails()+"</details></product>");
+		return("<product><goodsid>"+getGoodsId()+"</goodsid><quantity>"+getQuantity()+"</quantity><name>"+getName()+"</name><codename>"+getCodeName()+"</codename><branchcode>"+getBranchCode()+"</branchcode><batchnumber>"+getBatchCode()+"</batchnumber><unitprice>"+getUnitPrice()+"</unitprice><type>"+getType()+"</type><details>"+getDetails()+"</details></product>");
 	}
 }

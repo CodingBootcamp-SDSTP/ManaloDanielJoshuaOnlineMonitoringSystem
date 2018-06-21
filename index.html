@@ -2,21 +2,28 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<script type="text/javascript" src="js/functionality.js"></script>
-		<link href="css/style.css" rel="stylesheet" type="text/css" />
+		<link href='css/style.css' rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="functionality/functionality.js"></script>
 	</head>
 	<body>
 		<div id="navbar">
-			<a href="#">HOME</a>
-			<a href="#">LOGIN</a>
-			<a href="#">SIGNUP</a>
+			<a id="btnhome" href="#">HOME</a>
+			<a id="btnlogin" href="#">LOGIN</a>
 		</div>
 		<div class="header">
 			<img src="images/header.png" alt="monitoring image" >
 			<p>Monitor.&nbsp&nbspObserve.&nbsp&nbspAnywhere.</p>
 		</div>
-		<div class="content">
+		<div id="goeshere" class="content">
 			<h3>Online Monitoring App</h3>
+		</div>
+	<!-- Loginform -->
+		<div id="loginform" class="form">
+			<label>Username</label>
+			<input type="text" placeholder="Enter Username" id="un" required><br>
+			<label>Password</label>
+			<input type="password" placeholder="Enter Password" id="pw" required><br>
+			<button id="btn" type="submit">Login</button>
 		</div>
 	</body>
 </html>

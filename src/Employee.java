@@ -2,94 +2,110 @@ import java.math.BigDecimal;
 
 public class Employee
 {
-	private int empid;
-	private String fname;
-	private String lname;
-	private String address;
-	private int assignedTo;
-	private int sss;
-	private int philhealth;
-	private String position;
+	private final int EMPLOYEEID;
+	private String firstName;
+	private String lastName;
+	private String branchCode;
+	private String address1;
+	private String address2;
+	private String gender;
+	private String sss;
+	private String philHealth;
+	private String jobTitle;
 	private String details;
 
-	public Employee(int empid, String fname, String lname, String address, int assignedTo, int sss, int philhealth, String position, String details) {
-		this.empid = empid;
-		this.fname = fname;
-		this.lname = lname;
-		this.address = address;
-		this.assignedTo = assignedTo;
+	public Employee(int employeeid, String firstName, String lastName, String branchCode, String address1, String address2, String gender, String sss, String philHealth, String jobTitle, String details) {
+		EMPLOYEEID = employeeid;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.branchCode = branchCode;
+		this.address1 = address1;
+		this.address2 = address2;
+		this.gender = gender;
 		this.sss = sss;
-		this.philhealth = philhealth;
-		this.position = position;
+		this.philHealth = philHealth;
+		this.jobTitle = jobTitle;
 		this.details = details;
 	}
 //SETTER
-	public void setEmpId(int id) {
-		empid = id;
+	public void setFirstName(String fn) {
+		firstName = fn;
 	}
 
-	public void setFname(String fn) {
-		fname = fn;
+	public void setLastName(String ln) {
+		lastName = ln;
 	}
 
-	public void setLname(String ln) {
-		lname = ln;
+	public void setBranchCode(String bc) {
+		branchCode = bc;
 	}
 
-	public void set(String a) {
-		address = a;
+	public void setAddress1(String a) {
+		address1 = a;
 	}
 
-	public void setAssignedTo(int at) {
-		assignedTo = at;
+	public void setAddress2(String add) {
+		address2 = add;
 	}
 
-	public void setSSS(int sss) {
+	public void setGender(String g) {
+		gender = g;
+	}
+
+	public void setSSS(String sss) {
 		this.sss = sss;
 	}
 
-	public void setPhilHealth(int ph) {
-		philhealth = ph;
+	public void setPhilHealth(String ph) {
+		philHealth = ph;
 	}
 
-	public void setPosition(String p) {
-		position = p;
+	public void setJobTitle(String jt) {
+		jobTitle = jt;
 	}
 
 	public void setdetails(String d) {
 		details = d;
 	}
 //GETTER
-	public int getEmpId() {
-		return(empid);
+	public int getEmployeeId() {
+		return(EMPLOYEEID);
 	}
 
-	public String getFname() {
-		return(fname);
+	public String getFirstName() {
+		return(firstName);
 	}
 
-	public String getLname() {
-		return(lname);
+	public String getLastName() {
+		return(lastName);
 	}
 
-	public String getAddress() {
-		return(address);
+	public String getBranchCode() {
+		return(branchCode);
 	}
 
-	public int getAssignedTo() {
-		return(assignedTo);
+	public String getAddress1() {
+		return(address1);
 	}
 
-	public int getSSS() {
+	public String getAddress2() {
+		return(address2);
+	}
+
+	public String getGender() {
+		return(gender);
+	}
+
+	public String getSSS() {
 		return(sss);
 	}
 
-	public int getPhilHealth() {
-		return(philhealth);
+	public String getPhilHealth() {
+		return(philHealth);
 	}
 
-	public String getPosition() {
-		return(position);
+	public String getJobTitle() {
+		return(jobTitle);
 	}
 
 	public String getDetails() {
@@ -97,6 +113,6 @@ public class Employee
 	}
 //METHODS
 	public String toString() {
-		return("<employee><empid>"+getEmpId()+"</empid><fname>"+getFname()+"</fname><lname>"+getLname()+"</lname><address>"+getAddress()+"</address><assignedto>"+getAssignedTo()+"</assignedto><sss>"+getSSS()+"</sss><philhealth>"+getSSS()+"</philhealth><position>"+getPosition()+"</position><details>"+getDetails()+"</details></employee>");
+		return("<employee><employeeid>"+getEmployeeId()+"</employeeid><firstname>"+getFirstName()+"</firstname><lastname>"+getLastName()+"</lastname><branchcode>"+getBranchCode()+"</branchcode><address1>"+getAddress1()+"</address1><address2>"+getAddress2()+"</address2><gender>"+getGender()+"</gender><sss>"+getSSS()+"</sss><philhealth>"+getPhilHealth()+"</philhealth><jobtitle>"+getJobTitle()+"</jobtitle><details>"+getDetails()+"</details></employee>");
 	}
 }

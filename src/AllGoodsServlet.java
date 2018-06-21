@@ -13,7 +13,7 @@ public class AllGoodsServlet extends HttpServlet
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		PrintWriter out = res.getWriter();
-		goods = mmd.getAllGoods();
+		goods = mmd.getGoods();
 		res.setContentType("text/xml");
 		out.println(goods);
 		out.close();
